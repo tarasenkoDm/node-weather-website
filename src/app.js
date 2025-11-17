@@ -13,6 +13,8 @@ const forecast = require('./utils/forecast');
 
 // Initialize Express application
 const app = express();
+const port = process.env.PORT || 3000;
+const name = 'Dmytro Tarasenko'
 
 // Define directory paths for serving static files and template views
 const publicDirectoryPath = path.join(__dirname, '../public'); // Path to a public folder containing static assets (CSS, images, client-side JS)
@@ -32,7 +34,7 @@ app.get('', (req, res) => {
     // Render the index.hbs template with dynamic data
     res.render('index', {
         title: 'Weather', // Page title
-        name: 'Robo Head', // Name to display on the page
+        name, // Name to display on the page
     });
 });
 
@@ -41,7 +43,7 @@ app.get('/about', (req, res) => {
     // Render the about.hbs template with dynamic data
     res.render('about', {
         title: 'About Me', // Page title
-        name: 'Robo Head', // Name to display on the page
+        name, // Name to display on the page
     });
 })
 
@@ -51,7 +53,7 @@ app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help', // Page title
         message: 'This is a help page', // Help message to display
-        name: 'Robo Head', // Name to display on the page
+        name, // Name to display on the page
     })
 })
 
@@ -109,7 +111,7 @@ app.get('/help/*path', (req, res) => {
    res.render('404', {
        title: '404',
        errorMessage: 'Help article not found',
-       name: 'Robo Head', // Name to display on the page
+       name, // Name to display on the page
    });
 });
 
@@ -117,12 +119,12 @@ app.get('*path', (req, res) => {
    res.render('404', {
        title: '404',
        errorMessage: 'Page not found',
-       name: 'Robo Head', // Name to display on the page
+       name, // Name to display on the page
    })
 });
 
 // Start the server and listen on port 3000
-app.listen(3000, () => {
+app.listen(port, () => {
     // Log message when the server successfully starts
-    console.log('Server is up and running on port 3000');
+    console.log('Server is up and running on port ' + port);
 })
